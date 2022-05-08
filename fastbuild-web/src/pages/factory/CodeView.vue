@@ -2,7 +2,7 @@
   <div style="padding: 0 24px;">
     <a-row :gutter="24">
       <a-col :lg="6">
-        <div class="code-item" style="overflow: auto;">
+        <div class="code-item" :style="{ overflow: 'auto', height: isMobile ? '40vh' : 'calc(100vh - 190px)'}">
           <a-skeleton v-if="loading" :rows="6" animated />
           <a-directory-tree v-else :tree-data="treeData" @select="handleNodeClick"></a-directory-tree>
         </div>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import device from '@/utils/device'
+
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/xml/xml.js'
@@ -60,6 +62,7 @@ export default {
   },
   data () {
     return {
+      isMobile: device.isMobile(),
       code: null,
       language: 'js',
       loading: true,
