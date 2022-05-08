@@ -1,0 +1,2 @@
+Application Version: ${fastbuild.version}
+Spring Boot Version: ${spring-boot.version}
