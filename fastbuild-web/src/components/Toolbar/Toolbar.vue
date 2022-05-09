@@ -3,7 +3,7 @@
     <a-space size="large">
       <a-tooltip>
         <template slot="title">
-          联系我
+          联系我们
         </template>
         <a-button shape="circle" size="large" icon="mail" @click="contactVisible = true" />
       </a-tooltip>
@@ -21,13 +21,17 @@
       </a-tooltip>
     </a-space>
     <a-modal :visible.sync="contactVisible" @cancel="contactVisible = false" :footer="null">
-      <h2>联系我</h2>
+      <h2>联系我们</h2>
       <p>如您有任何宝贵意见或需求，可发送信息至以下邮箱。</p>
       <p>
         <a-space>
           <a-icon type="mail" theme="twoTone" />
           <span>fastbuild@163.com</span>
         </a-space>
+      </p>
+      <p>也可以关注我们的微信公众号，及时获取最新消息。我们会不定时的发布新应用，也许你能用得上。</p>
+      <p style="text-align: center;">
+        <img src="/static/qrcode.jpg" style="width: 50%" />
       </p>
       <p style="text-align: center;">
         <a-button @click="contactVisible = false">关闭</a-button>
