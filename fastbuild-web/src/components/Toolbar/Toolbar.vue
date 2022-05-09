@@ -13,6 +13,12 @@
         </template>
         <a-button shape="circle" size="large" icon="info" @click="infoVisible = true" />
       </a-tooltip>
+      <a-tooltip>
+        <template slot="title">
+          开源地址
+        </template>
+        <a-button shape="circle" size="large" icon="github" @click="openSource" />
+      </a-tooltip>
     </a-space>
     <a-modal :visible.sync="contactVisible" @cancel="contactVisible = false" :footer="null">
       <h2>联系我</h2>
@@ -44,6 +50,11 @@ export default {
     return {
       contactVisible: false,
       infoVisible: false
+    }
+  },
+  methods: {
+    openSource () {
+      window.open('https://gitee.com/yinm/fastbuild-facotry');
     }
   }
 }
