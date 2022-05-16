@@ -9,11 +9,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RuoyiVue3Format extends AbstractFormat {
+public class RuoyiVue3AntdFormat extends AbstractFormat {
 
-    private final String GEN_ID = "ruoyi#vue3#element";
+    private final String GEN_ID = "ruoyi#vue3#antd";
 
-    public RuoyiVue3Format(AppConfig app) {
+    public RuoyiVue3AntdFormat(AppConfig app) {
         super(app);
     }
 
@@ -24,7 +24,7 @@ public class RuoyiVue3Format extends AbstractFormat {
 
     @Override
     protected boolean validate() {
-        return "vue3".equals(project.getWebFramework()) && "element".equals(project.getWebUI());
+        return "vue3".equals(project.getWebFramework()) && "antd".equals(project.getWebUI());
     }
 
     @Override
@@ -32,11 +32,13 @@ public class RuoyiVue3Format extends AbstractFormat {
 
     @Override
     protected void fileGenerator() throws Exception {
-        String srcPath = properties.getFactoryRuoyiVue3Path();
+        String srcPath = properties.getFactoryRuoyiVue3AntdPath();
         String destPath = project.getWorkPath() + File.separator + project.getUiName();
         List<String> exclude = new ArrayList<>();
-        exclude.add("bin");
-        exclude.add("README.md");
+        exclude.add(".git");
+        exclude.add(".github");
+        exclude.add("sqlFiles");
+        exclude.add("javaFiles");
         FileUtils.copyDirectory(new File(srcPath), new File(destPath), new FileFileFilter() {
             @Override
             public boolean accept(File file) {

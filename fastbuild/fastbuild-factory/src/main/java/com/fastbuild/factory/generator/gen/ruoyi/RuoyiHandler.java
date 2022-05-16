@@ -17,7 +17,9 @@ public class RuoyiHandler implements IGenHandler {
             new RuoyiCloudFormat(this.app),
 
             new RuoyiVue2Format(this.app),
+            new RuoyiVue2AntdFormat(this.app),
             new RuoyiVue3Format(this.app),
+            new RuoyiVue3AntdFormat(this.app),
             new RuoyiReactFormat(this.app),
 
             new RuoyiMySqlFormat(this.app),

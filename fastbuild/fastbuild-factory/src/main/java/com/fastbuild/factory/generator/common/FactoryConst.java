@@ -5,6 +5,7 @@ public interface FactoryConst {
     class app {
         public static final String FASTBUILD = "fastbuild";
         public static final String RUOYI = "ruoyi";
+        public static final String YUDAO = "yudao";
     }
 
     class db {

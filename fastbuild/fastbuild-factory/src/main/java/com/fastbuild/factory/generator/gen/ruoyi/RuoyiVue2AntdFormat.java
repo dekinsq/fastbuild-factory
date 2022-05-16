@@ -9,11 +9,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RuoyiVue2Format extends AbstractFormat {
+public class RuoyiVue2AntdFormat extends AbstractFormat {
 
-    private final String GEN_ID = "ruoyi#vue2#element";
+    private final String GEN_ID = "ruoyi#vue2#antd";
 
-    public RuoyiVue2Format(AppConfig app) {
+    public RuoyiVue2AntdFormat(AppConfig app) {
         super(app);
     }
 
@@ -24,7 +24,7 @@ public class RuoyiVue2Format extends AbstractFormat {
 
     @Override
     protected boolean validate() {
-        return "vue2".equals(project.getWebFramework()) && "element".equals(project.getWebUI());
+        return "vue2".equals(project.getWebFramework()) && "antd".equals(project.getWebUI());
     }
 
     @Override
@@ -32,11 +32,9 @@ public class RuoyiVue2Format extends AbstractFormat {
 
     @Override
     protected void fileGenerator() throws Exception {
-        String srcPath = properties.getFactoryRuoyiVuePath() + File.separator + "ruoyi-ui";
+        String srcPath = properties.getFactoryRuoyiVueAntdPath();
         String destPath = project.getWorkPath() + File.separator + project.getUiName();
         List<String> exclude = new ArrayList<>();
-        exclude.add("bin");
-        exclude.add("README.md");
         FileUtils.copyDirectory(new File(srcPath), new File(destPath), new FileFileFilter() {
             @Override
             public boolean accept(File file) {
@@ -61,10 +59,6 @@ public class RuoyiVue2Format extends AbstractFormat {
 
                 content = content.replaceAll("        </el-tooltip>", "");
                 FileUtils.writeStringToFile(file, content.replace("<el-tooltip content=\"源码地址\" effect=\"dark\" placement=\"bottom\">", ""));
-            } else if ("index.vue".equals(file.getName()) && "views".equals(file.getParentFile().getName())) {
-                file.delete();
-            } else if ("index_v1.vue".equals(file.getName()) && "views".equals(file.getParentFile().getName())) {
-                file.renameTo(new File(file.getPath().replace("_v1", "")));
             } else {
                 List<String> lines = FileUtils.readLines(file, "utf-8");
                 List<String> newLines = new ArrayList<>();

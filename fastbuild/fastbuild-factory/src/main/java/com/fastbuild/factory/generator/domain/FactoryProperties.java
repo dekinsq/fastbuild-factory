@@ -19,8 +19,14 @@ public class FactoryProperties {
     @Value("${factory.ruoyi.vue.path}")
     private String factoryRuoyiVuePath;
 
+    @Value("${factory.ruoyi.vue.antd.path}")
+    private String factoryRuoyiVueAntdPath;
+
     @Value("${factory.ruoyi.vue3.path}")
     private String factoryRuoyiVue3Path;
+
+    @Value("${factory.ruoyi.vue3.antd.path}")
+    private String factoryRuoyiVue3AntdPath;
 
     @Value("${factory.ruoyi.oracle.path}")
     private String factoryRuoyiOraclePath;
