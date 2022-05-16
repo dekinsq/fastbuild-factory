@@ -165,11 +165,11 @@
             </dependency>
 
             <!-- 定时任务-->
-            <dependency>
-                <groupId>com.fastbuild</groupId>
-                <artifactId>fastbuild-quartz</artifactId>
-                <version>${fastbuild.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.fastbuild</groupId>-->
+<!--                <artifactId>fastbuild-quartz</artifactId>-->
+<!--                <version>${fastbuild.version}</version>-->
+<!--            </dependency>-->
 
             <!-- 代码生成-->
             <dependency>
@@ -214,7 +214,7 @@
         <module>fastbuild-framework</module>
         <module>fastbuild-factory</module>
         <module>fastbuild-system</module>
-        <module>fastbuild-quartz</module>
+<!--        <module>fastbuild-quartz</module>-->
         <module>fastbuild-generator</module>
         <module>fastbuild-common</module>
     </modules>

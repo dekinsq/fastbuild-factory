@@ -15,7 +15,7 @@
               <div class="item-right">
                 <a-select v-model="form.webUI" size="large" style="width: 100%;">
                   <a-select-option value="element">Element UI</a-select-option>
-                  <a-select-option value="antd" disabled>Ant Desigin</a-select-option>
+                  <a-select-option value="antd">Ant Desigin</a-select-option>
                 </a-select>
               </div>
             </a-form-item>
