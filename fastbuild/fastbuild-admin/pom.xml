@@ -50,10 +50,10 @@
         </dependency>
 
         <!-- 定时任务-->
-        <dependency>
-            <groupId>com.fastbuild</groupId>
-            <artifactId>fastbuild-quartz</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.fastbuild</groupId>-->
+<!--            <artifactId>fastbuild-quartz</artifactId>-->
+<!--        </dependency>-->
 
         <!-- 代码生成-->
         <dependency>
