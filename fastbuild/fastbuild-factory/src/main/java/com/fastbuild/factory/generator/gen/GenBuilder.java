@@ -4,6 +4,7 @@ import com.fastbuild.factory.generator.common.FactoryConst;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.domain.ProjectConfig;
 import com.fastbuild.factory.generator.gen.ruoyi.RuoyiHandler;
+import com.fastbuild.factory.generator.gen.yudao.YudaoHandler;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -45,6 +46,9 @@ public class GenBuilder {
         switch (app.getAppId()) {
             case FactoryConst.app.RUOYI: {
                 return new RuoyiHandler(app);
+            }
+            case FactoryConst.app.YUDAO: {
+                return new YudaoHandler(app);
             }
         }
         return null;

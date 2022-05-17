@@ -35,4 +35,9 @@ public class FactoryProperties {
     private String factoryRuoyiSqlServerPath;
     /** ruoyi applications end */
 
+    /** yudao applications */
+    @Value("${factory.yudao.vue.path}")
+    private String factoryYudaoVuePath;
+    /** yudao applications end */
+
 }
