@@ -6,14 +6,14 @@
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="Web">
               <div class="item-left">
-                <a-select v-model="form.webFramework" size="large" style="width: 100%;">
+                <a-select v-model="form.webFramework" size="large" style="width: 100%;" @select="webFrameworkSelect">
                   <a-select-option value="vue2">Vue2</a-select-option>
                   <a-select-option value="vue3">Vue3</a-select-option>
                   <a-select-option value="react" disabled>React</a-select-option>
                 </a-select>
               </div>
               <div class="item-right">
-                <a-select v-model="form.webUI" size="large" style="width: 100%;">
+                <a-select v-model="form.webUI" size="large" style="width: 100%;" @select="webUISelect">
                   <a-select-option value="element">Element UI</a-select-option>
                   <a-select-option value="antd">Ant Desigin</a-select-option>
                 </a-select>
@@ -100,6 +100,10 @@ export default {
   methods: {
     dbChanged () {
       this.form.databaseVersion = this.dbVersion[this.form.database][0].value;
+    },
+    webFrameworkSelect () {
+    },
+    webUISelect () {
     }
   }
 }

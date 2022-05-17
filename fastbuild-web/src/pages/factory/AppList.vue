@@ -3,7 +3,12 @@
       <a-table-column key="title" title="Action">
         <template slot-scope="text, record">
           <div :class="record.disable ? ['app-item', 'app-item-disabled'] : ['app-item']">
-            <h3 class="title">{{record.title}} <a-tag color="blue" size="small">基础平台</a-tag></h3>
+            <h3 class="title">
+              {{record.title}} 
+              <a-tag color="blue" size="small">
+                <span v-if="record.appType == 'basic-platform'">基础平台</span>
+              </a-tag>
+            </h3>
             <div class="word-break-2" :title="record.desc">{{record.desc}}</div>
             <p v-if="record.disable" class="error">
               <span>{{record.assertMsg}}</span>
@@ -37,6 +42,38 @@ export default {
                 a.disable = true;
                 a.assertMsg = rule.msg;
                 break;
+              } else if (rule.type == 'unique' && rule.value == 'basic-platform') {
+                if (state.factory.config.appList && state.factory.config.appList.length > 0) {
+                  let index = state.factory.config.appList.findIndex(res => {
+                    return res.appType == rule.value;
+                  });
+                  if (index > -1) {
+                    a.disable = true;
+                    a.assertMsg = rule.msg;
+                  }
+                  break;
+                } else {
+                  a.disable = false;
+                  a.assertMsg = '';
+                }
+              } else if (rule.type == 'webFramework') {
+                if (rule.value.indexOf(state.factory.config.webFramework) < 0) {
+                  a.disable = true;
+                  a.assertMsg = rule.msg;
+                  break;
+                } else {
+                  a.disable = false;
+                  a.assertMsg = '';
+                }
+              } else if (rule.type == 'webUI') {
+                if (rule.value.indexOf(state.factory.config.webUI) < 0) {
+                  a.disable = true;
+                  a.assertMsg = rule.msg;
+                  break;
+                } else {
+                  a.disable = false;
+                  a.assertMsg = '';
+                }
               }
             }
           } else {

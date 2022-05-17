@@ -3,7 +3,6 @@ package com.fastbuild.factory.generator.gen.yudao;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
 import com.fastbuild.factory.generator.gen.IGenHandler;
-import com.fastbuild.factory.generator.gen.ruoyi.*;
 
 public class YudaoHandler implements IGenHandler {
 
