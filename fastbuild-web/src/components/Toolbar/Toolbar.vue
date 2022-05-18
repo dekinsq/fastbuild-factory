@@ -22,11 +22,17 @@
     </a-space>
     <a-modal :visible.sync="contactVisible" @cancel="contactVisible = false" :footer="null">
       <h2>联系我们</h2>
-      <p>如您有任何宝贵意见或需求，可发送信息至以下邮箱。</p>
+      <p>如您有任何宝贵意见或需求，可发送邮件或提交issues，非常感谢！</p>
       <p>
         <a-space>
           <a-icon type="mail" theme="twoTone" />
           <span>fastbuild@163.com</span>
+        </a-space>
+      </p>
+      <p>
+        <a-space>
+          <a-icon type="question-circle" theme="twoTone" />
+          <a href="javascript:window.open('https://gitee.com/yinm/fastbuild-facotry/issues')">issues地址</a>
         </a-space>
       </p>
       <p>也可以关注我们的微信公众号，及时获取最新消息。我们会不定时的发布新应用，也许你能用得上。</p>
