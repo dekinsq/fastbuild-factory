@@ -1,5 +1,6 @@
 package com.fastbuild.factory.generator.gen.ruoyi;
 
+import com.fastbuild.factory.generator.common.FactoryConst;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
 import org.apache.commons.io.FileUtils;
@@ -24,7 +25,7 @@ public class RuoyiVue3Format extends AbstractFormat {
 
     @Override
     protected boolean validate() {
-        return "vue3".equals(project.getWebFramework()) && "element".equals(project.getWebUI());
+        return FactoryConst.web.VUE3.equals(project.getWebFramework()) && FactoryConst.ui.ELEMENT.equals(project.getWebUI());
     }
 
     @Override

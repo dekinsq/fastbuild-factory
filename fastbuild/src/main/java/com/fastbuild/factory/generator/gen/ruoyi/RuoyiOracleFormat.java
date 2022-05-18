@@ -22,7 +22,8 @@ public class RuoyiOracleFormat extends AbstractFormat {
     @Override
     protected boolean validate() {
         return (FactoryConst.app.RUOYI.equals(app.getAppId())
-                && FactoryConst.db.ORACLE.equals(project.getDatabase()));
+                && FactoryConst.db.ORACLE.equals(project.getDatabase())
+                && !FactoryConst.web.THYMELEAF.equals(project.getWebFramework()));
     }
 
     @Override

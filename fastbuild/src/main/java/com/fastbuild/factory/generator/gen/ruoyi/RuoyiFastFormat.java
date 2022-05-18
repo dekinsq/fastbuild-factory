@@ -5,7 +5,6 @@ import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFileFilter;
-import org.apache.commons.text.CaseUtils;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -13,11 +12,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RuoyiSingleFormat extends AbstractFormat {
+public class RuoyiFastFormat extends AbstractFormat {
 
-    private final String GEN_ID = "ruoyi#single";
+    private final String GEN_ID = "ruoyi#fast";
 
-    public RuoyiSingleFormat(AppConfig app) {
+    public RuoyiFastFormat(AppConfig app) {
         super(app);
     }
 
@@ -28,9 +27,7 @@ public class RuoyiSingleFormat extends AbstractFormat {
 
     @Override
     protected boolean validate() {
-        // 非thymeleaf方式
-        return FactoryConst.app.RUOYI.equals(app.getAppId())
-                && !FactoryConst.web.THYMELEAF.equals(project.getWebFramework());
+        return FactoryConst.app.RUOYI.equals(app.getAppId()) && FactoryConst.web.THYMELEAF.equals(project.getWebFramework());
     }
 
     @Override
@@ -43,22 +40,12 @@ public class RuoyiSingleFormat extends AbstractFormat {
     }
 
     private File createServerDirectory() throws IOException {
-        String srcPath = null;
-        if (FactoryConst.db.MYSQL.equals(this.project.getDatabase())) {
-            srcPath = properties.getFactoryRuoyiVuePath();
-        } else if (FactoryConst.db.ORACLE.equals(this.project.getDatabase())) {
-            srcPath = properties.getFactoryRuoyiOraclePath();
-        } else if (FactoryConst.db.SQL_SERVER.equals(this.project.getDatabase())) {
-            srcPath = properties.getFactoryRuoyiSqlServerPath();
-        }
+        String srcPath = properties.getFactoryRuoyiFastPath();
         File root = new File(project.getServerRootPath());
         List<String> exclude = new ArrayList<>();
         exclude.add(".git");
         exclude.add(".github");
         exclude.add(".idea");
-        exclude.add("ruoyi-ui");
-        exclude.add("README.md");
-        exclude.add("v3");
         FileUtils.copyDirectory(new File(srcPath), root, new FileFileFilter() {
             @Override
             public boolean accept(File file) {

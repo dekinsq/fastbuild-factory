@@ -16,6 +16,9 @@ public class FactoryProperties {
     private String factoryTmpRoot;
 
     /** ruoyi applications */
+    @Value("${factory.ruoyi.fast.path}")
+    private String factoryRuoyiFastPath;
+
     @Value("${factory.ruoyi.vue.path}")
     private String factoryRuoyiVuePath;
 

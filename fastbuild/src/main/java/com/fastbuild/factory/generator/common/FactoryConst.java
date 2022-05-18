@@ -14,4 +14,16 @@ public interface FactoryConst {
         public static final String SQL_SERVER = "sqlserver";
     }
 
+    class web {
+        public static final String VUE2 = "vue2";
+        public static final String VUE3 = "vue3";
+        public static final String REACT = "react";
+        public static final String THYMELEAF = "thymeleaf";
+    }
+
+    class ui {
+        public static final String ANTD = "antd";
+        public static final String ELEMENT = "element";
+    }
+
 }

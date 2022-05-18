@@ -27,6 +27,7 @@ public class RuoyiMySqlFormat extends AbstractFormat {
 
     @Override
     protected void dependency() throws Exception {
+        new RuoyiFastFormat(this.app).gen();
         new RuoyiSingleFormat(this.app).gen();
         new RuoyiCloudFormat(this.app).gen();
     }

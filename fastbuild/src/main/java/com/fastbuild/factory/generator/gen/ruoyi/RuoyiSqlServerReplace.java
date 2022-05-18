@@ -28,7 +28,9 @@ public class RuoyiSqlServerReplace extends AbstractFormat {
 
     @Override
     protected boolean validate() {
-        return FactoryConst.db.SQL_SERVER.equals(project.getDatabase());
+        return FactoryConst.db.SQL_SERVER.equals(project.getDatabase())
+                && FactoryConst.db.ORACLE.equals(project.getDatabase())
+                && !FactoryConst.web.THYMELEAF.equals(project.getWebFramework());
     }
 
     @Override
