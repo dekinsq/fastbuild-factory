@@ -52,7 +52,7 @@ export default {
       serverMode: 'single',
       packagePrefix: 'com.fastbuild',
       database: 'mysql',
-      databaseVersion: '5.7',
+      databaseVersion: '5.6',
       appList: []
     },
     appList: appList

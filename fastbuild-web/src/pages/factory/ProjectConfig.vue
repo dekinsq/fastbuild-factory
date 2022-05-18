@@ -91,7 +91,7 @@ export default {
   data () {
     return {
       dbVersion: {
-        mysql: [{ value: '5.7', label: '5.7+' }],
+        mysql: [{ value: '5.6', label: '5.6+' }],
         oracle: [{ value: '10g', label: '10g+' }],
         sqlserver: [{ value: '2012', label: '2012+' }],
       }
