@@ -16,7 +16,7 @@
 
 ## 应用列表
 
-|     | 应用名称    | 描述                              | 链接 |
+| &nbsp;&nbsp;&nbsp;&nbsp; | 应用名称    | 描述                              | 链接 |
 |-----|-------|----------------------------------------|-------|
 | :tw-1f6a9: | 若依管理平台  | RuoYi-Vue 是一个 Java EE 企业级快速开发平台，基于经典技术组合（Spring Boot、Spring Security、MyBatis、Jwt、Vue） | **[Gitee](https://gitee.com/y_project/RuoYi-Vue)** |
 | :tw-1f6a9: | 芋道管理平台  | 芋道，以开发者为中心，打造中国第一流的快速开发平台，全部开源，个人与企业可 100% 免费使用。 | **[Gitee](https://gitee.com/zhijiantianya/ruoyi-vue-pro)** |
