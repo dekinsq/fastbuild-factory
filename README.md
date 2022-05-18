@@ -12,7 +12,8 @@
 
 1. 修改项目名称、包名路径等信息。
 2. 前端适配vue2、vue3、element-ui、ant-design-vue等。
-3. 服务端适配mysql、oracle、sqlserver等
+3. 服务端适配spring boot、spring cloud
+4. 数据库适配mysql、oracle、sqlserver等
 
 ## 应用列表
 
