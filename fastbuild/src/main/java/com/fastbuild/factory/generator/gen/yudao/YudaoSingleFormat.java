@@ -3,8 +3,12 @@ package com.fastbuild.factory.generator.gen.yudao;
 import com.fastbuild.factory.generator.common.FactoryConst;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
+import com.fastbuild.factory.generator.gen.common.FileFormatter;
+import com.fastbuild.factory.generator.gen.common.FileHelper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFileFilter;
+import org.apache.commons.io.filefilter.FileFilterUtils;
+import org.apache.commons.text.CaseUtils;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -13,7 +17,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class YudaoSingleFormat extends AbstractFormat {
@@ -31,7 +37,7 @@ public class YudaoSingleFormat extends AbstractFormat {
 
     @Override
     protected boolean validate() {
-        return FactoryConst.app.YUDAO.equals(app.getAppId());
+        return FactoryConst.app.YUDAO.equals(app.getAppId()) && FactoryConst.server.SINGLE.equals(project.getServerMode());
     }
 
     @Override
@@ -39,13 +45,83 @@ public class YudaoSingleFormat extends AbstractFormat {
 
     @Override
     protected void fileGenerator() throws Exception {
-        File root = this.createServerDirectory();
-        this.renameServerDirectory(root);
+        String srcPath = properties.getFactoryYudaoVuePath();
+        File srcFile = new File(srcPath);
+        File destRoot = new File(project.getServerRootPath());
+
+        List<String> exclude = this.getExcludeFile();
+        Map<String, String> replaceDirMap = this.getReplaceDirMap();
+        Map<String, String> replaceFileMap = this.getReplaceFileMap();
+
+        FileHelper.copyDirectory(srcFile, destRoot, new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return !exclude.contains(file.getName());
+            }
+        }, replaceDirMap, replaceFileMap);
+
+        this.fileContentFormat(destRoot);
     }
 
-    private File createServerDirectory() throws IOException {
-        String srcPath = properties.getFactoryYudaoVuePath();
-        File root = new File(project.getServerRootPath());
+    /**
+     * 格式化文件内容
+     *
+     * @param destRoot
+     * @throws IOException
+     */
+    private void fileContentFormat (File destRoot) throws IOException {
+        final String classNamePrefix = CaseUtils.toCamelCase(project.getProjectName(), true, new char[] { '-', '_' });
+        final String varNamePrefix = CaseUtils.toCamelCase(project.getProjectName(), false, new char[] { '-', '_' });
+
+        FileFormatter javaFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("java"));
+        javaFormatter.replaceAll("cn.iocoder.yudao", project.getPackagePrefix());
+        javaFormatter.replaceAll("YuDao", classNamePrefix);
+        javaFormatter.replaceAll("Yudao", classNamePrefix);
+        javaFormatter.replaceAll("yudao", varNamePrefix);
+        javaFormatter.replaceAll("芋道管理系统", project.getProjectTitle());
+        javaFormatter.format();
+
+        FileFormatter xmlFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("xml"));
+        xmlFormatter.replaceAll("https://github.com/YunaiV/ruoyi-vue-pro", "http://fastbuild.run");
+        xmlFormatter.replaceAll("cn.iocoder.yudao", project.getPackagePrefix());
+        xmlFormatter.replaceAll("yudao", varNamePrefix);
+        xmlFormatter.replaceAll("芋道项目基础脚手架", project.getProjectTitle());
+        xmlFormatter.format();
+
+        FileFormatter ymlFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("yaml"));
+        if (FactoryConst.db.ORACLE.equals(project.getDatabase())) {
+            ymlFormatter.deleteLine("jdbc:mysql://127.0.0.1:3306");
+            ymlFormatter.replace("#          url: jdbc:oracle:thin:@127.0.0.1:1521:xe", "           url: jdbc:oracle:thin:@127.0.0.1:1521:${spring.datasource.dynamic.datasource.master.name}");
+        } else if (FactoryConst.db.SQL_SERVER.equals(project.getDatabase())) {
+            ymlFormatter.deleteLine("jdbc:mysql://127.0.0.1:3306");
+            ymlFormatter.replace("#          url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=\\\\\\${spring.datasource.dynamic.datasource.master.name}", "           url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=${spring.datasource.dynamic.datasource.master.name}");
+            ymlFormatter.replace("#          url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=\\\\\\${spring.datasource.dynamic.datasource.slave.name}", "           url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=${spring.datasource.dynamic.datasource.slave.name}");
+        }
+        ymlFormatter.replaceAll("yudao", project.getProjectName());
+        ymlFormatter.replaceAll("yudao-server", project.getProjectName());
+        ymlFormatter.format();
+
+        FileFormatter vmFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("vm"));
+        vmFormatter.replaceAll("cn.iocoder.yudao", project.getPackagePrefix());
+        vmFormatter.replaceAll("yudao", varNamePrefix);
+        vmFormatter.format();
+
+        FileFormatter sqlFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("sql"));
+        sqlFormatter.replaceAll("cn.iocoder.yudao", project.getPackagePrefix());
+        sqlFormatter.format();
+
+        FileFormatter txtFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("md"));
+        txtFormatter.replaceAll("ruoyi", project.getProjectName());
+        txtFormatter.format();
+
+        FileFormatter factoriesFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("factories"));
+        factoriesFormatter.replaceAll("cn.iocoder.yudao", project.getPackagePrefix());
+        factoriesFormatter.replaceAll("YuDao", classNamePrefix);
+        factoriesFormatter.replaceAll("Yudao", classNamePrefix);
+        factoriesFormatter.format();
+    }
+
+    private List<String> getExcludeFile () {
         List<String> exclude = new ArrayList<>();
         exclude.add(".git");
         exclude.add(".github");
@@ -56,68 +132,23 @@ public class YudaoSingleFormat extends AbstractFormat {
         exclude.add("yudao-ui-admin");
         exclude.add("yudao-ui-app-tmp");
         exclude.add("yudao-ui-app-v1");
-        FileUtils.copyDirectory(new File(srcPath), root, new FileFileFilter() {
-            @Override
-            public boolean accept(File file) {
-                String fileName = file.getName();
-                return !exclude.contains(fileName) && !fileName.endsWith("iml");
-            }
-        });
-        return root;
+        return exclude;
     }
 
-    private void renameServerDirectory(File root) throws IOException {
-        if (!project.getPackagePrefix().equals("cn.iocoder.yudao")) {
-
-            File[] modules = root.listFiles(new FileFilter() {
-                @Override
-                public boolean accept(File pathname) {
-                    return pathname.isDirectory();
-                }
-            });
-            for (File module : modules) {
-                File[] children = module.listFiles(new FileFilter() {
-                    @Override
-                    public boolean accept(File pathname) {
-                        return pathname.isDirectory();
-                    }
-                });
-                for (File child : children) {
-                    if (child.getName().contains("yudao-")) {
-                        File dest = new File(child.getPath().replace(child.getName(), child.getName().replace("yudao-", project.getProjectName() + "-")));
-                        child.renameTo(dest);
-
-                        this.movePackage(dest.getPath());
-                    }
-                }
-                if (module.getName().contains("yudao-")) {
-                    File dest = new File(module.getPath().replace(module.getName(), module.getName().replace("yudao-", project.getProjectName() + "-")));
-                    module.renameTo(dest);
-
-                    this.movePackage(dest.getPath());
-                }
-            }
-
-        }
+    private Map<String, String> getReplaceDirMap () {
+        Map<String, String> replaceDirMap = new LinkedHashMap<>();
+        replaceDirMap.put("yudao-", project.getProjectName() + "-");
+        String[] packageArr = project.getPackagePrefix().split(".");
+        replaceDirMap.put("src/main/java/cn/iocoder/yudao", "src/main/java/" + project.getPackagePrefix().replaceAll("\\.", "/"));
+        return replaceDirMap;
     }
 
-    private void movePackage(String path) throws IOException {
-        String packagePath = path + "/src/main/java/cn/iocoder/yudao";
-        File packageDir = new File(packagePath);
-        if (packageDir.exists()) {
-            File destPackage = new File(path + "/src/main/java/" + project.getPackagePrefix().replaceAll("\\.", "/"));
-            File[] listFiles = packageDir.listFiles();
-            for (File srcFile : listFiles) {
-                FileUtils.moveToDirectory(srcFile, destPackage, true);
-            }
-            if (destPackage.getPath().contains(packageDir.getParent())) {
-                FileUtils.deleteDirectory(new File(packagePath));
-            } else if (destPackage.getPath().contains(packageDir.getParentFile().getParent())) {
-                FileUtils.deleteDirectory(new File(path + "/src/main/java/cn/iocoder"));
-            } else if (destPackage.getPath().contains(packageDir.getParentFile().getParentFile().getParent())) {
-                FileUtils.deleteDirectory(new File(path + "/src/main/java/cn"));
-            }
-        }
+    private Map<String, String> getReplaceFileMap () {
+        final String classNamePrefix = CaseUtils.toCamelCase(project.getProjectName(), true, new char[] { '-', '_' });
+        Map<String, String> replaceFileMap = new LinkedHashMap<>();
+        replaceFileMap.put("YuDao", classNamePrefix);
+        replaceFileMap.put("Yudao", classNamePrefix);
+        return replaceFileMap;
     }
 
 }

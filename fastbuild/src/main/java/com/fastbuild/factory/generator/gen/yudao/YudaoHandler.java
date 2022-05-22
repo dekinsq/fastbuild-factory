@@ -16,11 +16,7 @@ public class YudaoHandler implements IGenHandler {
             new YudaoSingleFormat(this.app),
             new YudaoCloudFormat(this.app),
 
-            new YudaoMySqlFormat(this.app),
-            new YudaoOracleFormat(this.app),
-            new YudaoSqlServerFormat(this.app),
-
-            new YudaoVue2Format(this.app),
+            new YudaoWebFormat(this.app),
         };
     }
 

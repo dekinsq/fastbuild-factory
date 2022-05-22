@@ -6,7 +6,7 @@ import com.fastbuild.factory.generator.gen.AbstractFormat;
 
 public class YudaoCloudFormat extends AbstractFormat {
 
-    private final String GEN_ID = "yudao#springboot";
+    private final String GEN_ID = "yudao#cloud";
 
     public YudaoCloudFormat(AppConfig app) {
         super(app);
@@ -35,7 +35,6 @@ public class YudaoCloudFormat extends AbstractFormat {
             project.getGenList().add(GEN_ID);
         }
     }
-
 
     @Override
     protected void fileGenerator() {

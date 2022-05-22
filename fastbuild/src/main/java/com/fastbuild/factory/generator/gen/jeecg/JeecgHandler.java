@@ -1,22 +1,19 @@
-package com.fastbuild.factory.generator.gen.ruoyi;
+package com.fastbuild.factory.generator.gen.jeecg;
 
-import com.fastbuild.factory.generator.common.FactoryConst;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
 import com.fastbuild.factory.generator.gen.IGenHandler;
 
-public class RuoyiHandler implements IGenHandler {
+public class JeecgHandler implements IGenHandler {
 
     private AppConfig app;
 
     private AbstractFormat[] genList;
 
-    public RuoyiHandler(AppConfig app) {
+    public JeecgHandler(AppConfig app) {
         this.app = app;
-        this.genList = new AbstractFormat[] {
-                new RuoyiSingleFormat(this.app),
-                new RuoyiCloudFormat(this.app),
-                new RuoyiWebFormat(this.app),
+        genList = new AbstractFormat[] {
+            new JeecgSingleFormat(this.app),
         };
     }
 

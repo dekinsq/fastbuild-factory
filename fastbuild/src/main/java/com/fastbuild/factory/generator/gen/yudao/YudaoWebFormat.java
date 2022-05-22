@@ -1,6 +1,5 @@
-package com.fastbuild.factory.generator.gen.ruoyi;
+package com.fastbuild.factory.generator.gen.yudao;
 
-import com.fastbuild.factory.generator.common.FactoryConst;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
 import org.apache.commons.io.FileUtils;
@@ -10,11 +9,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RuoyiVue3Format extends AbstractFormat {
+public class YudaoWebFormat extends AbstractFormat {
 
-    private final String GEN_ID = "ruoyi#vue3#element";
+    private final String GEN_ID = "ruoyi#vue2#element";
 
-    public RuoyiVue3Format(AppConfig app) {
+    public YudaoWebFormat(AppConfig app) {
         super(app);
     }
 
@@ -25,7 +24,7 @@ public class RuoyiVue3Format extends AbstractFormat {
 
     @Override
     protected boolean validate() {
-        return FactoryConst.web.VUE3.equals(project.getWebFramework()) && FactoryConst.ui.ELEMENT.equals(project.getWebUI());
+        return "vue2".equals(project.getWebFramework()) && "element".equals(project.getWebUI());
     }
 
     @Override
@@ -33,11 +32,11 @@ public class RuoyiVue3Format extends AbstractFormat {
 
     @Override
     protected void fileGenerator() throws Exception {
-        String srcPath = properties.getFactoryRuoyiVue3Path();
+        String srcPath = properties.getFactoryYudaoVuePath() + File.separator + "yudao-ui-admin";
         String destPath = project.getWorkPath() + File.separator + project.getUiName();
         List<String> exclude = new ArrayList<>();
-        exclude.add("bin");
-        exclude.add("README.md");
+        exclude.add("node_modules");
+        exclude.add("index_old.vue");
         FileUtils.copyDirectory(new File(srcPath), new File(destPath), new FileFileFilter() {
             @Override
             public boolean accept(File file) {
@@ -52,7 +51,7 @@ public class RuoyiVue3Format extends AbstractFormat {
             List<String> lines = FileUtils.readLines(file, "utf-8");
             List<String> newLines = new ArrayList<>();
             for (String text : lines) {
-                newLines.add(text.replaceAll("若依管理系统", project.getProjectTitle()).replaceAll("若依后台管理系统", project.getProjectTitle()));
+                newLines.add(text.replaceAll("芋道管理系统", project.getProjectTitle()));
             }
             FileUtils.writeLines(file, newLines, false);
         }

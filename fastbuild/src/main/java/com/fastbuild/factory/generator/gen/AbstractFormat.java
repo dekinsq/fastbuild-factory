@@ -1,10 +1,16 @@
 package com.fastbuild.factory.generator.gen;
 
 import com.fastbuild.factory.generator.domain.AppConfig;
-import com.fastbuild.factory.generator.domain.FactoryProperties;
 import com.fastbuild.factory.generator.domain.ProjectConfig;
+import com.fastbuild.factory.generator.gen.common.FactoryProperties;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.FileFileFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public abstract class AbstractFormat implements IGenHandler {
 

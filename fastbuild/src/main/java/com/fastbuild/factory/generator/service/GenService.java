@@ -1,7 +1,7 @@
 package com.fastbuild.factory.generator.service;
 
 import com.fastbuild.factory.common.Base64;
-import com.fastbuild.factory.generator.domain.FactoryProperties;
+import com.fastbuild.factory.generator.gen.common.FactoryProperties;
 import com.fastbuild.factory.generator.domain.FileContent;
 import com.fastbuild.factory.generator.domain.FileNode;
 import com.fastbuild.factory.generator.domain.ProjectConfig;

@@ -6,6 +6,12 @@ public interface FactoryConst {
         public static final String FASTBUILD = "fastbuild";
         public static final String RUOYI = "ruoyi";
         public static final String YUDAO = "yudao";
+        public static final String JEECG = "jeecg";
+    }
+
+    class server {
+        public static final String SINGLE = "single";
+        public static final String CLOUD = "cloud";
     }
 
     class db {

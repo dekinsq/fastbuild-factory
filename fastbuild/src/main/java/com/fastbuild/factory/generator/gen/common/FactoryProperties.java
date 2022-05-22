@@ -1,4 +1,4 @@
-package com.fastbuild.factory.generator.domain;
+package com.fastbuild.factory.generator.gen.common;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,5 +42,10 @@ public class FactoryProperties {
     @Value("${factory.yudao.vue.path}")
     private String factoryYudaoVuePath;
     /** yudao applications end */
+
+    /** jeecg applications */
+    @Value("${factory.jeecg.vue.path}")
+    private String factoryJeecgVuePath;
+    /** jeecg applications end */
 
 }

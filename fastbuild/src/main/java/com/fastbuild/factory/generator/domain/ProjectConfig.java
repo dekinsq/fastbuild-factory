@@ -1,5 +1,6 @@
 package com.fastbuild.factory.generator.domain;
 
+import com.fastbuild.factory.generator.gen.common.FactoryProperties;
 import lombok.Data;
 import lombok.ToString;
 

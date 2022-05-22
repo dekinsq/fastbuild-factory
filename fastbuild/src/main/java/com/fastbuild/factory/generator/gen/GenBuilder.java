@@ -3,6 +3,7 @@ package com.fastbuild.factory.generator.gen;
 import com.fastbuild.factory.generator.common.FactoryConst;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.domain.ProjectConfig;
+import com.fastbuild.factory.generator.gen.jeecg.JeecgHandler;
 import com.fastbuild.factory.generator.gen.ruoyi.RuoyiHandler;
 import com.fastbuild.factory.generator.gen.yudao.YudaoHandler;
 
@@ -54,6 +55,9 @@ public class GenBuilder {
             }
             case FactoryConst.app.YUDAO: {
                 return new YudaoHandler(app);
+            }
+            case FactoryConst.app.JEECG: {
+                return new JeecgHandler(app);
             }
         }
         return null;
