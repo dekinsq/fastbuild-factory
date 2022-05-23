@@ -10,11 +10,11 @@ import org.apache.commons.io.filefilter.FileFilterUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class RuoyiUIFormat extends AbstractFormat {
+public class RuoyiWebFormat extends AbstractFormat {
 
     private final String GEN_ID = "ruoyi#web";
 
-    public RuoyiUIFormat(AppConfig app) {
+    public RuoyiWebFormat(AppConfig app) {
         super(app);
     }
 
