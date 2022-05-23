@@ -5,8 +5,6 @@ import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
 import com.fastbuild.factory.generator.gen.common.FileFormatter;
 import com.fastbuild.factory.generator.gen.common.FileHelper;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.FileFileFilter;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.text.CaseUtils;
 
@@ -23,11 +21,11 @@ import java.util.Map;
  *
  * @author fastbuild@163.com
  */
-public class RuoyiSingleFormat extends AbstractFormat {
+public class RuoyiServerFormat extends AbstractFormat {
 
     private final String GEN_ID = "ruoyi#single";
 
-    public RuoyiSingleFormat(AppConfig app) {
+    public RuoyiServerFormat(AppConfig app) {
         super(app);
     }
 
@@ -38,7 +36,7 @@ public class RuoyiSingleFormat extends AbstractFormat {
 
     @Override
     protected boolean validate() {
-        return FactoryConst.app.RUOYI.equals(app.getAppId()) && FactoryConst.server.SINGLE.equals(project.getServerMode());
+        return FactoryConst.app.RUOYI.equals(app.getAppId());
     }
 
     @Override
@@ -105,10 +103,18 @@ public class RuoyiSingleFormat extends AbstractFormat {
         FileFormatter txtFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("txt"));
         txtFormatter.replaceAll("ruoyi", project.getProjectName());
         txtFormatter.format();
+
+        FileFormatter factoriesFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter("factories"));
+        factoriesFormatter.replaceAll("com.ruoyi", project.getPackagePrefix());
+        factoriesFormatter.replaceAll("YuDao", classNamePrefix);
+        factoriesFormatter.replaceAll("Yudao", classNamePrefix);
+        factoriesFormatter.format();
     }
 
     private String getSrcPath () {
-        if (FactoryConst.web.THYMELEAF.equals(this.project.getWebFramework())) {
+        if (FactoryConst.server.CLOUD.equals(this.project.getServerMode())) {
+            return properties.getFactoryRuoyiCloudPath();
+        } else if (FactoryConst.web.THYMELEAF.equals(this.project.getWebFramework())) {
             return properties.getFactoryRuoyiFastPath();
         } else if (FactoryConst.db.MYSQL.equals(this.project.getDatabase())) {
             return properties.getFactoryRuoyiVuePath();

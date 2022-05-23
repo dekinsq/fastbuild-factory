@@ -5,19 +5,16 @@ import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
 import com.fastbuild.factory.generator.gen.common.FileFormatter;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.FileFileFilter;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class RuoyiWebFormat extends AbstractFormat {
+public class RuoyiUIFormat extends AbstractFormat {
 
     private final String GEN_ID = "ruoyi#web";
 
-    public RuoyiWebFormat(AppConfig app) {
+    public RuoyiUIFormat(AppConfig app) {
         super(app);
     }
 
@@ -29,13 +26,11 @@ public class RuoyiWebFormat extends AbstractFormat {
     @Override
     protected boolean validate() {
         return FactoryConst.app.RUOYI.equals(app.getAppId())
-                && FactoryConst.server.SINGLE.equals(project.getServerMode())
                 && !FactoryConst.web.THYMELEAF.equals(project.getWebFramework());
     }
 
     @Override
     protected void dependency() throws Exception {
-
     }
 
     @Override
@@ -69,7 +64,9 @@ public class RuoyiWebFormat extends AbstractFormat {
     }
 
     private String getSrcPath () {
-        if (FactoryConst.web.VUE2.equals(project.getWebFramework()) && FactoryConst.ui.ELEMENT.equals(project.getWebUI())) {
+        if (FactoryConst.server.CLOUD.equals(this.project.getServerMode())) {
+            return properties.getFactoryRuoyiCloudPath() + File.separator + "ruoyi-ui";
+        } else if (FactoryConst.web.VUE2.equals(project.getWebFramework()) && FactoryConst.ui.ELEMENT.equals(project.getWebUI())) {
             return properties.getFactoryRuoyiVuePath() + File.separator + "ruoyi-ui";
         } else if (FactoryConst.web.VUE3.equals(project.getWebFramework()) && FactoryConst.ui.ELEMENT.equals(project.getWebUI())) {
             return properties.getFactoryRuoyiVue3Path();

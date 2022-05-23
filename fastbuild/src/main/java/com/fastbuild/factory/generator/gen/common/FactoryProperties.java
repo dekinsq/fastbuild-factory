@@ -36,6 +36,9 @@ public class FactoryProperties {
 
     @Value("${factory.ruoyi.sqlserver.path}")
     private String factoryRuoyiSqlServerPath;
+
+    @Value("${factory.ruoyi.cloud.path}")
+    private String factoryRuoyiCloudPath;
     /** ruoyi applications end */
 
     /** yudao applications */

@@ -1,6 +1,5 @@
 package com.fastbuild.factory.generator.gen.ruoyi;
 
-import com.fastbuild.factory.generator.common.FactoryConst;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
 import com.fastbuild.factory.generator.gen.IGenHandler;
@@ -14,9 +13,8 @@ public class RuoyiHandler implements IGenHandler {
     public RuoyiHandler(AppConfig app) {
         this.app = app;
         this.genList = new AbstractFormat[] {
-                new RuoyiSingleFormat(this.app),
-                new RuoyiCloudFormat(this.app),
-                new RuoyiWebFormat(this.app),
+                new RuoyiServerFormat(this.app),
+                new RuoyiUIFormat(this.app),
         };
     }
 
