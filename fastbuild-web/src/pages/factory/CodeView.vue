@@ -29,7 +29,7 @@
     >
       <a-space size="large">
         <a-button size="large" :style="{ marginRight: '8px' }" @click="$emit('close')">关闭</a-button>
-        <a-button size="large" type="primary" @click="$emit('download')">源码下载</a-button>
+        <a-button size="large" :loading="loading" type="primary" @click="$emit('download')">源码下载</a-button>
       </a-space>
     </div>
   </div>
@@ -105,6 +105,7 @@ export default {
         case 'properties':
         case 'yml': return 'yaml';
         case 'java': return 'javascript';
+        case 'html': return 'htmlmixed';
         default: return suffix;
       }
     }

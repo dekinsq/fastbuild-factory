@@ -60,6 +60,8 @@ import { saveAs } from 'file-saver'
 import { downloadApi } from '@/api/factory'
 import device from '@/utils/device'
 
+import { validRules } from './validApp';
+
 export default {
   components: {
     Logo,
@@ -120,6 +122,19 @@ export default {
       }
       if (this.config.appList.length < 1) {
         this.$message.error('请至少选择一个应用！');
+        return false;
+      }
+      let msgs = this.config.appList.filter(app => {
+        let valid = validRules(app, ['webFramework', 'webUI', 'serverMode']);
+        return valid.disable;
+      });
+      if (msgs && msgs.length > 0) {
+        msgs.map(res => {
+          this.$notification.error({
+            message: res.title,
+            description: res.assertMsg
+          })
+        });
         return false;
       }
       return true;

@@ -28,68 +28,24 @@
 
 <script>
 import { mapState } from 'vuex';
+import { validRules } from './validApp';
 
 export default {
   props: ['dataScope'],
   computed: {
     ...mapState({
       appList (state) {
-        return state.factory.appList.filter(a => {
-          a.keyId = new Date().getTime();
-          if (a.rules) {
-            for (let rule of a.rules) {
-              if (rule.type == 'inUse' && rule.inUse == 0) {
-                a.disable = true;
-                a.assertMsg = rule.msg;
-                break;
-              } else if (rule.type == 'unique' && rule.value == 'basic-platform') {
-                if (state.factory.config.appList && state.factory.config.appList.length > 0) {
-                  let index = state.factory.config.appList.findIndex(res => {
-                    return res.appType == rule.value;
-                  });
-                  if (index > -1) {
-                    a.disable = true;
-                    a.assertMsg = rule.msg;
-                  }
-                  break;
-                } else {
-                  a.disable = false;
-                  a.assertMsg = '';
-                }
-              } else if (rule.type == 'webFramework') {
-                if (rule.value.indexOf(state.factory.config.webFramework) < 0) {
-                  a.disable = true;
-                  a.assertMsg = rule.msg;
-                  break;
-                } else {
-                  a.disable = false;
-                  a.assertMsg = '';
-                }
-              } else if (rule.type == 'webUI') {
-                if (rule.value.indexOf(state.factory.config.webUI) < 0) {
-                  a.disable = true;
-                  a.assertMsg = rule.msg;
-                  break;
-                } else {
-                  a.disable = false;
-                  a.assertMsg = '';
-                }
-              }
-            }
-          } else {
-            a.disable = false;
-          }
+        return state.factory.appList.filter((app, index) => {
+          app.keyId = new Date().getTime() + '-' + index;
+          let valid = validRules(app);
+          app = Object.assign(app, valid);
           return state.factory.config.appList.findIndex(c => {
-            return a.appId == c.appId;
+            return app.appId == c.appId;
           }) < 0;
         });
       },
       chooseAppList: state => state.factory.config.appList,
     })
-  },
-  data () {
-    return {
-    }
   },
   methods: {
     handleAdd(row) {

@@ -9,13 +9,18 @@
                 <a-select v-model="form.webFramework" size="large" style="width: 100%;" @select="webFrameworkSelect">
                   <a-select-option value="vue2">Vue2</a-select-option>
                   <a-select-option value="vue3">Vue3</a-select-option>
-                  <a-select-option value="react" disabled>React</a-select-option>
+                  <a-select-option value="react">React</a-select-option>
+                  <a-select-option value="thymeleaf">Thymeleaf</a-select-option>
                 </a-select>
               </div>
               <div class="item-right">
                 <a-select v-model="form.webUI" size="large" style="width: 100%;" @select="webUISelect">
-                  <a-select-option value="element">Element UI</a-select-option>
-                  <a-select-option value="antd">Ant Desigin</a-select-option>
+                  <a-select-option
+                    v-for="item in webUiList[form.webFramework]"
+                    :key="item.value"
+                    :value="item.value">
+                    {{item.label}}
+                  </a-select-option>
                 </a-select>
               </div>
             </a-form-item>
@@ -24,7 +29,7 @@
             <a-form-item label="服务端">
               <a-radio-group v-model="form.serverMode" size="large">
                 <a-radio value="single" border>单应用</a-radio>
-                <a-radio value="cloud" border disabled>微服务</a-radio>
+                <a-radio value="cloud" border>微服务</a-radio>
               </a-radio-group>
             </a-form-item>
           </a-col>
@@ -94,17 +99,24 @@ export default {
         mysql: [{ value: '5.6', label: '5.6+' }],
         oracle: [{ value: '10g', label: '10g+' }],
         sqlserver: [{ value: '2012', label: '2012+' }],
+      },
+      webUiList: {
+        vue2: [{ value: 'element', label: 'Element UI' }, { value: 'antd', label: 'Ant Desigin' }],
+        vue3: [{ value: 'element', label: 'Element UI' }, { value: 'antd', label: 'Ant Desigin' }],
+        react: [{ value: 'antd', label: 'Ant Desigin' }],
+        thymeleaf: [{ value: 'bootstrap', label: 'Bootstrap UI' }],
       }
     }
   },
   methods: {
+    webFrameworkSelect () {
+      this.form.webUI = this.webUiList[this.form.webFramework][0].value;
+    },
+    webUISelect () {
+    },
     dbChanged () {
       this.form.databaseVersion = this.dbVersion[this.form.database][0].value;
     },
-    webFrameworkSelect () {
-    },
-    webUISelect () {
-    }
   }
 }
 </script>
