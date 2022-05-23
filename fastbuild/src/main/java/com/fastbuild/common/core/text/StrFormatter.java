@@ -1,4 +1,6 @@
-package com.fastbuild.factory.common;
+package com.fastbuild.common.core.text;
+
+import com.fastbuild.common.utils.StringUtils;
 
 /**
  * 字符串格式化

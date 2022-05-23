@@ -1,10 +1,10 @@
 package com.fastbuild.factory.generator.gen.jeecg;
 
 import com.fastbuild.factory.generator.common.FactoryConst;
+import com.fastbuild.factory.generator.common.FileFormatter;
+import com.fastbuild.factory.generator.common.FileHelper;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
-import com.fastbuild.factory.generator.gen.common.FileHelper;
-import com.fastbuild.factory.generator.gen.common.FileFormatter;
 import org.apache.commons.text.CaseUtils;
 
 import java.io.File;

@@ -1,4 +1,6 @@
-package com.fastbuild.factory.common;
+package com.fastbuild.common.core.text;
+
+import com.fastbuild.common.utils.StringUtils;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

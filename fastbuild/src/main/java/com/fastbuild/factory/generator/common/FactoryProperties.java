@@ -1,4 +1,4 @@
-package com.fastbuild.factory.generator.gen.common;
+package com.fastbuild.factory.generator.common;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

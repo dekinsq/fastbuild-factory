@@ -1,26 +1,20 @@
 package com.fastbuild.factory.generator.gen.yudao;
 
 import com.fastbuild.factory.generator.common.FactoryConst;
+import com.fastbuild.factory.generator.common.FileFormatter;
+import com.fastbuild.factory.generator.common.FileHelper;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
-import com.fastbuild.factory.generator.gen.common.FileFormatter;
-import com.fastbuild.factory.generator.gen.common.FileHelper;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.FileFileFilter;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.text.CaseUtils;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class YudaoSingleFormat extends AbstractFormat {
 

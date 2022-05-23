@@ -1,10 +1,10 @@
 package com.fastbuild.factory.generator.gen.ruoyi;
 
 import com.fastbuild.factory.generator.common.FactoryConst;
+import com.fastbuild.factory.generator.common.FileFormatter;
+import com.fastbuild.factory.generator.common.FileHelper;
 import com.fastbuild.factory.generator.domain.AppConfig;
 import com.fastbuild.factory.generator.gen.AbstractFormat;
-import com.fastbuild.factory.generator.gen.common.FileFormatter;
-import com.fastbuild.factory.generator.gen.common.FileHelper;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.text.CaseUtils;
 

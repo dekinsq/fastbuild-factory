@@ -1,4 +1,4 @@
-package com.fastbuild.factory.common;
+package com.fastbuild.common.constant;
 
 /**
  * 通用常量信息

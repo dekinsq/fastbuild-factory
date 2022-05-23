@@ -1,4 +1,4 @@
-package com.fastbuild.factory.generator.gen.common;
+package com.fastbuild.factory.generator.common;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;

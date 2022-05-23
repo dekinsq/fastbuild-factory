@@ -1,4 +1,7 @@
-package com.fastbuild.factory.common;
+package com.fastbuild.common.core.domain;
+
+import com.fastbuild.common.constant.HttpStatus;
+import com.fastbuild.common.utils.StringUtils;
 
 import java.util.HashMap;
 

@@ -1,6 +1,6 @@
 package com.fastbuild.factory.generator.controller;
 
-import com.fastbuild.factory.common.AjaxResult;
+import com.fastbuild.common.core.domain.AjaxResult;
 import com.fastbuild.factory.generator.domain.FileContent;
 import com.fastbuild.factory.generator.domain.FileNode;
 import com.fastbuild.factory.generator.domain.ProjectConfig;

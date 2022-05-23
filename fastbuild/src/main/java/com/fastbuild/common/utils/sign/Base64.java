@@ -1,4 +1,4 @@
-package com.fastbuild.factory.common;
+package com.fastbuild.common.utils.sign;
 
 /**
  * Base64工具类
