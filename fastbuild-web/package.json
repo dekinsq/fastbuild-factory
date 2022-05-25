@@ -1,8 +1,8 @@
 {
   "name": "Fastbuild",
-  "version": "0.0.1",
+  "version": "2.0.2",
   "description": "Fastbuild Factory",
-  "author": "yinmang1215@163.com",
+  "author": "fastbuild@163.com",
   "license": "",
   "scripts": {
     "dev": "vue-cli-service serve",
