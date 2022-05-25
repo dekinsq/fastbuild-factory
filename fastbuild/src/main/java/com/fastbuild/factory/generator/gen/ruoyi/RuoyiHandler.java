@@ -15,6 +15,7 @@ public class RuoyiHandler implements IGenHandler {
         this.genList = new AbstractFormat[] {
                 new RuoyiServerFormat(this.app),
                 new RuoyiWebFormat(this.app),
+                new RuoyiMobileFormat(this.app),
         };
     }
 

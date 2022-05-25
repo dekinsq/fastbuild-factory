@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     openSource () {
-      window.open('https://gitee.com/yinm/fastbuild-facotry');
+      window.open('https://gitee.com/yinm/fastbuild-factory');
     }
   }
 }

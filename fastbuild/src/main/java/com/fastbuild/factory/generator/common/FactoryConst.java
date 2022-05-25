@@ -32,4 +32,8 @@ public interface FactoryConst {
         public static final String ELEMENT = "element";
     }
 
+    class mobile {
+        public static final String UNIAPP = "uniapp";
+    }
+
 }

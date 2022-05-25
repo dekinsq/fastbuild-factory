@@ -31,6 +31,9 @@ public class FactoryProperties {
     @Value("${factory.ruoyi.vue3.antd.path}")
     private String factoryRuoyiVue3AntdPath;
 
+    @Value("${factory.ruoyi.reack.antd.path}")
+    private String factoryRuoyiReackAntdPath;
+
     @Value("${factory.ruoyi.oracle.path}")
     private String factoryRuoyiOraclePath;
 
@@ -39,6 +42,9 @@ public class FactoryProperties {
 
     @Value("${factory.ruoyi.cloud.path}")
     private String factoryRuoyiCloudPath;
+
+    @Value("${factory.ruoyi.uniapp.path}")
+    private String factoryRuoyiUniappPath;
     /** ruoyi applications end */
 
     /** yudao applications */

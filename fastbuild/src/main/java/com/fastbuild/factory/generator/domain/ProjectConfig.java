@@ -69,6 +69,10 @@ public class ProjectConfig {
         return this.projectName + "-ui";
     }
 
+    public String getMobileName() {
+        return this.projectName + "-mobile";
+    }
+
     public String getServerRootPath() {
         return this.workPath + File.separator + this.projectName;
     }

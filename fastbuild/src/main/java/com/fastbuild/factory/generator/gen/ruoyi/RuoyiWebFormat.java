@@ -74,6 +74,8 @@ public class RuoyiWebFormat extends AbstractFormat {
             return properties.getFactoryRuoyiVueAntdPath();
         } else if (FactoryConst.web.VUE3.equals(project.getWebFramework()) && FactoryConst.ui.ANTD.equals(project.getWebUI())) {
             return properties.getFactoryRuoyiVue3AntdPath();
+        } else if (FactoryConst.web.REACT.equals(project.getWebFramework()) && FactoryConst.ui.ANTD.equals(project.getWebUI())) {
+            return properties.getFactoryRuoyiReackAntdPath();
         }
         return null;
     }
