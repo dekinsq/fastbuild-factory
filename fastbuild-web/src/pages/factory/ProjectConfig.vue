@@ -38,7 +38,7 @@
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="移动端" size="large">
               <a-radio-group v-model="form.mobileFramework">
-                <a-radio value="uniApp" border>UniApp</a-radio>
+                <a-radio value="uniapp" border>UniApp</a-radio>
               </a-radio-group>
             </a-form-item>
           </a-col>

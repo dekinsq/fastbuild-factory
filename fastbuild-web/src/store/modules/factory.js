@@ -16,17 +16,20 @@ const appList = [{
   desc: '芋道，以开发者为中心，打造中国第一流的快速开发平台，全部开源，个人与企业可 100% 免费使用。多种内置功能：系统功能、工作流程、支付系统、商城系统、基础设施等。',
   rules: [
     { type: 'unique', value: 'basic-platform', msg: '基础平台只可选择一个，请先将应用列表中的其他基础平台移除！' },
-    { type: 'webFramework',  value: ['vue2'], msg: '请选择Vue2！'},
-    { type: 'webUI',  value: ['element'], msg: '请选择Element UI！'},
+    { type: 'serverMode',  value: ['single'], msg: '服务端请选择单应用！'},
+    { type: 'webFramework',  value: ['vue2'], msg: '请选择Vue2前端框架！'},
+    { type: 'webUI',  value: ['element'], msg: '请选择Element UI前端组件！'},
   ]
 // }, {
-//   appId: 'jeecg-boot',
+//   appId: 'jeecg',
 //   appType: 'basic-platform',
 //   title: 'JEECG BOOT 低代码开发平台',
 //   link: 'http://www.jeecg.com/',
 //   desc: 'JeecgBoot 是一款基于代码生成器的低代码平台！前后端分离架构 SpringBoot2.x，SpringCloud，Ant Design&Vue，Mybatis-plus，Shiro，JWT，支持微服务。强大的代码生成器让前后端代码一键生成，实现低代码开发! JeecgBoot 引领新的低代码开发模式(OnlineCoding-> 代码生成器-> 手工MERGE)， 帮助解决Java项目70%的重复工作，让开发更多关注业务。既能快速提高效率，节省研发成本，同时又不失灵活性！',
 //   rules: [
-//     { type: 'inUse', inUse: 0, msg: '功能开发中，敬请期待！' }
+//     { type: 'unique', value: 'basic-platform', msg: '基础平台只可选择一个，请先将应用列表中的其他基础平台移除！' },
+//     { type: 'webFramework',  value: ['vue2'], msg: '请选择Vue2前端框架！'},
+//     { type: 'webUI',  value: ['element'], msg: '请选择Element UI前端组件！'},
 //   ]
 // }, {
 //   appId: 'spring-blade',
@@ -48,7 +51,7 @@ export default {
       projectName: 'fastbuild',
       webFramework: 'vue2',
       webUI: 'element',
-      mobileFramework: 'uniApp',
+      mobileFramework: 'uniapp',
       serverMode: 'single',
       packagePrefix: 'com.fastbuild',
       database: 'mysql',
