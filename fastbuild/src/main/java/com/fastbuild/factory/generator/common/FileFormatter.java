@@ -15,6 +15,8 @@ import java.util.*;
  */
 public class FileFormatter {
 
+    private String encoding = "utf-8";
+
     private Map<String, String> replaceMap = new LinkedHashMap<>();
 
     private Map<String, String> replaceAllMap = new LinkedHashMap<>();
@@ -30,6 +32,10 @@ public class FileFormatter {
         this.ioFileFilter = ioFileFilter;
     }
 
+    public void setEncoding(String encoding) {
+        this.encoding = encoding;
+    }
+
     public Iterator<File> iteratePomFile () {
         return FileUtils.iterateFiles(this.pathName, ioFileFilter, DirectoryFileFilter.INSTANCE);
     }
@@ -39,8 +45,8 @@ public class FileFormatter {
         Set<String> replaceKeys = replaceMap.keySet();
         Set<String> replaceAllKeys = replaceAllMap.keySet();
         while (fileIterator.hasNext()) {
-            File pom = fileIterator.next();
-            Iterator<String> lineIterator = FileUtils.lineIterator(pom, "utf-8");
+            File file = fileIterator.next();
+            Iterator<String> lineIterator = FileUtils.lineIterator(file, this.encoding);
 
             List<String> contentList = new ArrayList<>();
             while (lineIterator.hasNext()) {
@@ -56,7 +62,7 @@ public class FileFormatter {
                 }
             }
 
-            FileUtils.writeLines(pom, contentList);
+            FileUtils.writeLines(file, this.encoding, contentList);
         }
     }
 
