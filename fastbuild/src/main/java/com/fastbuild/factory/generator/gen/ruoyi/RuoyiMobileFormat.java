@@ -47,8 +47,27 @@ public class RuoyiMobileFormat extends AbstractFormat {
     }
 
     private void fileContentFormat (File destRoot) throws IOException {
-        FileFormatter vueFormatter = new FileFormatter(destRoot, FileFilterUtils.nameFileFilter("ruoyi-config.js"));
-        vueFormatter.replaceAll("http://vue.ruoyi.vip/prod-api", "http://localhost:8080");
-        vueFormatter.format();
+        FileFormatter cfgFormatter = new FileFormatter(destRoot, FileFilterUtils.nameFileFilter("ruoyi-config.js"));
+        cfgFormatter.replaceAll("http://vue.ruoyi.vip/prod-api", "http://localhost:8080");
+        cfgFormatter.format();
+
+        if (FactoryConst.server.CLOUD.equals(project.getServerMode())) {
+            FileFormatter loginFormatter = new FileFormatter(destRoot, FileFilterUtils.nameFileFilter("login.js"));
+            loginFormatter.replaceAll("/login", "/auth/login");
+            loginFormatter.replaceAll("/logout", "/auth/logout");
+            loginFormatter.format();
+
+            FileFormatter captchaFormatter = new FileFormatter(destRoot, FileFilterUtils.nameFileFilter("captcha.js"));
+            captchaFormatter.replaceAll("/captchaImage", "/code");
+            captchaFormatter.format();
+
+            FileFormatter userFormatter = new FileFormatter(destRoot, FileFilterUtils.nameFileFilter("user.js"));
+            userFormatter.replaceAll("/getInfo", "/system/user/getInfo");
+            userFormatter.format();
+
+            FileFormatter logFormatter = new FileFormatter(destRoot, FileFilterUtils.nameFileFilter("log.js"));
+            logFormatter.replaceAll("/monitor/operlog/list", "/system/operlog/list");
+            logFormatter.format();
+        }
     }
 }
