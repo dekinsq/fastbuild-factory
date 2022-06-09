@@ -47,6 +47,14 @@ public class RuoyiMobileFormat extends AbstractFormat {
     }
 
     private void fileContentFormat (File destRoot) throws IOException {
+        FileFormatter vueFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter(".vue"));
+        vueFormatter.replaceAll("若依权限管理系统", project.getProjectTitle());
+        vueFormatter.format();
+
+        FileFormatter jsonFormatter = new FileFormatter(destRoot, FileFilterUtils.suffixFileFilter(".json"));
+        jsonFormatter.replaceAll("若依权限管理系统", project.getProjectTitle());
+        jsonFormatter.format();
+
         FileFormatter cfgFormatter = new FileFormatter(destRoot, FileFilterUtils.nameFileFilter("ruoyi-config.js"));
         cfgFormatter.replaceAll("http://vue.ruoyi.vip/prod-api", "http://localhost:8080");
         cfgFormatter.format();
